@@ -7,22 +7,26 @@
             <q-toolbar-title> To Do App </q-toolbar-title>
 
             <div>
-                <span>
-                    <i class="fas fa-cogs"></i>
-                    <router-link class="linkStyler" to="/settings">Settings</router-link>
-                </span>
-                <span>
-                    <i class="fas fa-tasks"></i>
-                    <router-link class="linkStyler" to="/">Todo List</router-link>
+                <span v-for="nav in navs" :key="nav.title">
+                    <i class="material-icons">{{ nav.icon }}</i>
+                    <router-link class="linkStyler" :to="nav.link">{{
+              nav.title
+            }}</router-link>
                 </span>
             </div>
         </q-toolbar>
     </q-header>
 
-    <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-1">
+    <q-footer>
+        <q-tabs>
+            <q-route-tab v-for="navItem in navs" :key="navItem.title" :icon="navItem.icon" :label="navItem.title" :to="navItem.link"></q-route-tab>
+        </q-tabs>
+    </q-footer>
+
+    <q-drawer v-model="leftDrawerOpen" :breakpoint="767" bordered content-class="bg-grey-2">
         <q-list>
             <q-item-label header class="text-grey-8"> Navigation </q-item-label>
-            <span v-for="navItem in navigationLinks" :key="navItem.title">
+            <span v-for="navItem in navs" :key="navItem.title">
                 <q-item :to="navItem.link" clickable>
                     <q-item-section v-if="navItem.icon" avatar>
                         <q-icon :name="navItem.icon" />
@@ -43,29 +47,25 @@
 </template>
 
 <script>
-//import Navigation from "components/Navigation.vue";
-
 const linksData = [{
         title: "ToDo",
-        icon: "fas fa-tasks",
+        icon: "list",
         link: "/",
     },
     {
         title: "Settings",
-        icon: "fas fa-cogs",
+        icon: "settings",
         link: "/settings",
     },
 ];
 
 export default {
     name: "MainLayout",
-    /* components: {
-                  Navigation,
-                }, */
+    components: {},
     data() {
         return {
             leftDrawerOpen: false,
-            navigationLinks: linksData,
+            navs: linksData,
         };
     },
 };
@@ -77,5 +77,11 @@ export default {
     font-weight: bold;
     text-decoration: none;
     padding: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    .q-footer {
+        display: none;
+    }
 }
 </style>
