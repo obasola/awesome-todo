@@ -21,10 +21,18 @@
 
     <q-drawer v-model="leftDrawerOpen" show-if-above bordered content-class="bg-grey-1">
         <q-list>
-            <q-item-label header class="text-grey-8">
-                Essential Links
-            </q-item-label>
-            <EssentialLink v-for="link in essentialLinks" :key="link.title" v-bind="link" />
+            <q-item-label header class="text-grey-8"> Navigation </q-item-label>
+            <span v-for="navItem in navigationLinks" :key="navItem.title">
+                <q-item :to="navItem.link" clickable>
+                    <q-item-section v-if="navItem.icon" avatar>
+                        <q-icon :name="navItem.icon" />
+                    </q-item-section>
+
+                    <q-item-section>
+                        <q-item-label>{{ navItem.title }}</q-item-label>
+                    </q-item-section>
+                </q-item>
+            </span>
         </q-list>
     </q-drawer>
 
@@ -35,61 +43,29 @@
 </template>
 
 <script>
-import EssentialLink from "components/EssentialLink.vue";
+//import Navigation from "components/Navigation.vue";
 
 const linksData = [{
-        title: "Docs",
-        caption: "quasar.dev",
-        icon: "school",
-        link: "https://quasar.dev",
+        title: "ToDo",
+        icon: "fas fa-tasks",
+        link: "/",
     },
     {
-        title: "Github",
-        caption: "github.com/quasarframework",
-        icon: "code",
-        link: "https://github.com/quasarframework",
-    },
-    {
-        title: "Discord Chat Channel",
-        caption: "chat.quasar.dev",
-        icon: "chat",
-        link: "https://chat.quasar.dev",
-    },
-    {
-        title: "Forum",
-        caption: "forum.quasar.dev",
-        icon: "record_voice_over",
-        link: "https://forum.quasar.dev",
-    },
-    {
-        title: "Twitter",
-        caption: "@quasarframework",
-        icon: "rss_feed",
-        link: "https://twitter.quasar.dev",
-    },
-    {
-        title: "Facebook",
-        caption: "@QuasarFramework",
-        icon: "public",
-        link: "https://facebook.quasar.dev",
-    },
-    {
-        title: "Quasar Awesome",
-        caption: "Community Quasar projects",
-        icon: "favorite",
-        link: "https://awesome.quasar.dev",
+        title: "Settings",
+        icon: "fas fa-cogs",
+        link: "/settings",
     },
 ];
 
 export default {
     name: "MainLayout",
-    components: {
-        EssentialLink,
-    },
+    /* components: {
+                  Navigation,
+                }, */
     data() {
         return {
             leftDrawerOpen: false,
-            essentialLinks: linksData,
+            navigationLinks: linksData,
         };
     },
 };
