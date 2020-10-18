@@ -1,10 +1,17 @@
 <template>
-  <div id="q-app">
+<div id="q-app">
     <router-view />
-  </div>
+</div>
 </template>
+
 <script>
 export default {
-  name: 'App'
-}
+    name: "App",
+};
 </script>
+
+<style lang="scss">
+.text-strikethrough {
+    text-decoration: line-through;
+}
+</style>

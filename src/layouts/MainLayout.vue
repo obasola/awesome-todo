@@ -1,5 +1,5 @@
 <template>
-<q-layout view="lHh Lpr lFf">
+<q-layout view="hHh Lpr lFf">
     <q-header elevated>
         <q-toolbar>
             <q-btn flat dense round icon="menu" aria-label="Menu" @click="leftDrawerOpen = !leftDrawerOpen" />
@@ -23,20 +23,19 @@
         </q-tabs>
     </q-footer>
 
-    <q-drawer v-model="leftDrawerOpen" :breakpoint="767" bordered content-class="bg-grey-2">
-        <q-list>
-            <q-item-label header class="text-grey-8"> Navigation </q-item-label>
-            <span v-for="navItem in navs" :key="navItem.title">
-                <q-item :to="navItem.link" clickable>
-                    <q-item-section v-if="navItem.icon" avatar>
-                        <q-icon :name="navItem.icon" />
-                    </q-item-section>
+    <q-drawer v-model="leftDrawerOpen" :breakpoint="767" :width="175" bordered content-class="bg-primary">
+        <q-list dark>
+            <q-item-label header class="text-grey-4"> Navigation </q-item-label>
 
-                    <q-item-section>
-                        <q-item-label>{{ navItem.title }}</q-item-label>
-                    </q-item-section>
-                </q-item>
-            </span>
+            <q-item v-for="navItem in navs" :key="navItem.title" :to="navItem.link" class="text-grey-4" clickable>
+                <q-item-section v-if="navItem.icon" avatar>
+                    <q-icon :name="navItem.icon" />
+                </q-item-section>
+
+                <q-item-section>
+                    <q-item-label>{{ navItem.title }}</q-item-label>
+                </q-item-section>
+            </q-item>
         </q-list>
     </q-drawer>
 
@@ -71,7 +70,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="scss">
 .linkStyler {
     color: white;
     font-weight: bold;
@@ -82,6 +81,12 @@ export default {
 @media screen and (min-width: 768px) {
     .q-footer {
         display: none;
+    }
+}
+
+.q-drawer {
+    .q-router-link--active .q-router-link--exact-active {
+        color: white !important;
     }
 }
 </style>
