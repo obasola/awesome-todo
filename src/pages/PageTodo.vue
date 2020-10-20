@@ -4,30 +4,7 @@
 
     <div class="padd">
         <q-list separator bordered>
-            <q-item v-for="task in tasks" :key="task.id" :class="task.completed ? 'bg-green-1' : 'bg-orange-1'" @click="task.completed = !task.completed" clickable v-ripple>
-                <q-item-section>
-                    <q-checkbox v-model="task.completed">
-                        <q-item-label class="{ 'text-strikethrough' : task.completed}">{{
-                task.name
-              }}</q-item-label>
-                    </q-checkbox>
-                </q-item-section>
-                <q-item-section>
-                    <div class="row">
-                        <div class="column justify-center">
-                            <q-icon name="event" size="18px" class="q-mr-xs" />
-                        </div>
-                        <div class="column">
-                            <q-item-label class="row justify-end" caption>{{
-                  task.dueDate
-                }}</q-item-label>
-                            <q-item-label class="row justify-end" caption>
-                                <small>{{ task.dueTime }}</small>
-                            </q-item-label>
-                        </div>
-                    </div>
-                </q-item-section>
-            </q-item>
+            <tasks v-for="(task, key) in tasks" :key="key" :task="task"  :id="key"></tasks>
         </q-list>
     </div>
 </q-page>
@@ -50,6 +27,9 @@ export default {
 
         //  ...mapGetters("tasks", ["getAllTasks"]),
     },
+    components: {
+        'tasks': require('../components/tasks/tasks').default
+    }
 };
 </script>
 
