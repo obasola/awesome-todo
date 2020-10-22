@@ -23,19 +23,19 @@
         </q-item-section>
     </q-item-section>
     <q-item-section side>
-        <q-btn @click="promptToDelete(id)" flat round dense color="red" icon="delete" />
+        <q-btn @click.stop="promptToDelete(id)" flat round dense color="red" icon="delete" />
     </q-item-section>
 
     <q-dialog v-model="confirm" persistent>
         <q-card>
             <q-card-section class="row items-center">
-                <q-avatar icon="signal_wifi_off" color="primary" text-color="white" />
+                <q-avatar icon="delete" color="red" text-color="white" />
                 <span class="q-ml-sm">Are you sure you want to Delete the selected item?</span>
             </q-card-section>
 
             <q-card-actions align="right">
-                <q-btn flat label="Yes" color="primary" v-close-popup />
-                <q-btn flat label="No" color="primary" v-close-popup />
+                <q-btn flat label="Yes" color="primary" v-close-popup @click="deleteOk(id)" />
+                <q-btn flat label="No" color="primary" v-close-popup @click="deleteCancel()" />
             </q-card-actions>
         </q-card>
     </q-dialog>
@@ -56,9 +56,17 @@ export default {
     },
     methods: {
         // function( STORE MODULE, FUNCTIONS declared in actions)
-        ...mapActions('tasks', ['updateTasks']),
+        ...mapActions('tasks', ['updateTasks', 'deleteTasks']),
+        deleteOk(id) {
+            this.deleteTasks(id);
+
+        },
+        deleteCancel() {
+            alert("Delete aborted");
+        },
         promptToDelete(id) {
             this.confirm = true
+
         }
     }
 }
