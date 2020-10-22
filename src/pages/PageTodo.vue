@@ -4,8 +4,11 @@
 
     <div class="padd">
         <q-list separator bordered>
-            <tasks v-for="(task, key) in tasks" :key="key" :task="task"  :id="key"></tasks>
+            <tasks v-for="(task, key) in tasks" :key="key" :task="task" :id="key"></tasks>
         </q-list>
+        <div class="floatRight">
+            <q-btn round color="secondary" icon="navigation" />
+        </div>
     </div>
 </q-page>
 </template>
@@ -37,5 +40,10 @@ export default {
 .padd {
     margin-left: 20px;
     background-color: bg-blue-3;
+}
+
+.floatRight {
+    float: right;
+
 }
 </style>
