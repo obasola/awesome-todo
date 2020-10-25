@@ -55,7 +55,9 @@
 </template>
 
 <script>
-import { emit } from 'process';
+import {
+    emit
+} from 'process';
 import {
     mapActions
 } from 'vuex'
@@ -73,9 +75,7 @@ export default {
     },
     methods: {
         ...mapActions('tasks', ['submitTask']),
-        addNewTask() {
-            this.showAddTask = true;
-        },
+
         saveTask() {
             this.showAddTask = false;
             //this.$refs.name.validate();

@@ -41,7 +41,9 @@ export default {
         //  ...mapGetters("tasks", ["getAllTasks"]),
     },
     methods: {
-
+        addNewTask() {
+            this.showAddTask = true;
+        },
     },
     components: {
         'tasks': require('../components/tasks/tasks').default,
