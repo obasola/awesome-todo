@@ -6,9 +6,17 @@
         <q-list separator bordered>
             <tasks v-for="(task, key) in tasks" :key="key" :task="task" :id="key"></tasks>
         </q-list>
-        <div class="floatRight">
-            <q-btn round color="secondary" icon="navigation" />
+        <div class="absolute-bottom text-center q-mb-lg">
+            <q-btn round color="secondary" icon="add" @click="addNewTask()" />
         </div>
+    </div>
+
+    <div class="q-pa-md q-gutter-sm">
+
+        <q-dialog v-model="showAddTask">
+            <add-task @closeAfterSave="showAddTask = false" />
+        </q-dialog>
+
     </div>
 </q-page>
 </template>
@@ -20,7 +28,9 @@ import {
 
 export default {
     data() {
-        return {};
+        return {
+            showAddTask: true
+        };
     },
     computed: {
         // Replace with mapGetters (the PRO way)
@@ -30,8 +40,12 @@ export default {
 
         //  ...mapGetters("tasks", ["getAllTasks"]),
     },
+    methods: {
+
+    },
     components: {
-        'tasks': require('../components/tasks/tasks').default
+        'tasks': require('../components/tasks/tasks').default,
+        'add-task': require('../components/tasks/modals/AddTask').default
     }
 };
 </script>

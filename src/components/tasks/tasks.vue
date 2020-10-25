@@ -3,7 +3,7 @@
     <q-item-section>
         <q-checkbox :value="task.completed" class="no-pointer-events">
             <q-item-label class="{ 'text-strikethrough' : task.completed}">
-                {{task.name}} {{id}}
+                {{task.name}}
             </q-item-label>
         </q-checkbox>
     </q-item-section>
