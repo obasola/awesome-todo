@@ -1,7 +1,7 @@
 <template>
 <q-card style="width:475px; max-width:500px">
 
-    <modal-header>Add Tasks</modal-header>
+    <modal-header>Edit Task</modal-header>
 
     <q-form @submit.prevent="saveTask()">
         <q-card-section class="q-pt-none">
@@ -48,7 +48,7 @@ export default {
             this.taskInstance.dueTime = '';
         },
         saveTask() {
-            this.showAddTask = false;
+            this.showEditTask = false;
             this.submitTask(this.taskInstance)
             this.$emit("closeAfterSave")
         }

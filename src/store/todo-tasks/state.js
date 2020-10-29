@@ -32,7 +32,7 @@ export default function () {
         dueDate: "2020-10-16",
         dueTime: "13:48",
         completed: false,
-      }
+      } 
     }
     /* Replace array with objects
     tasks: [

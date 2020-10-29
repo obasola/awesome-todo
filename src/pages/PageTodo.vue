@@ -3,7 +3,7 @@
     <h2 class="padd">To Do List</h2>
 
     <div class="padd">
-        <q-list separator bordered>
+        <q-list v-if="Object.keys(tasks).length" separator bordered>
             <tasks v-for="(task, key) in tasks" :key="key" :task="task" :id="key"></tasks>
         </q-list>
         <div class="absolute-bottom text-center q-mb-lg">
@@ -12,6 +12,10 @@
     </div>
 
     <div class="q-pa-md q-gutter-sm">
+
+        <q-dialog v-model="showEditTask">
+            <edit-task @closeAfterSave="showEditTask = false" />
+        </q-dialog>
 
         <q-dialog v-model="showAddTask">
             <add-task @closeAfterSave="showAddTask = false" />
@@ -29,7 +33,8 @@ import {
 export default {
     data() {
         return {
-            showAddTask: true
+            showAddTask: false,
+            showEditTask: false
         };
     },
     computed: {
@@ -44,10 +49,14 @@ export default {
         addNewTask() {
             this.showAddTask = true;
         },
+        editTask() {
+            this.showEditTask = true;
+        },
     },
     components: {
         'tasks': require('../components/tasks/tasks').default,
-        'add-task': require('../components/tasks/modals/AddTask').default
+        'add-task': require('../components/tasks/modals/AddTask').default,
+        'edit-task': require('../components/tasks/modals/EditTask').default
     }
 };
 </script>
