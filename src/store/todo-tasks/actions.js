@@ -10,7 +10,9 @@ export function updateTasks( {commit}, payload) {
 export function deleteTasks ( {commit}, id) {
     commit('deleteTasks', id)
 }
-
+export function updateEditFlag({commit}, flag) {
+    commit('updateEditFlag', flag)
+}
 export function submitTask( {commit}, task) {
     commit( 'submitTask', task)
 }

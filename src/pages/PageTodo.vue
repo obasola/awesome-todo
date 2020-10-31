@@ -13,10 +13,6 @@
 
     <div class="q-pa-md q-gutter-sm">
 
-        <q-dialog v-model="showEditTask">
-            <edit-task @closeAfterSave="showEditTask = false" />
-        </q-dialog>
-
         <q-dialog v-model="showAddTask">
             <add-task @closeAfterSave="showAddTask = false" />
         </q-dialog>
@@ -33,8 +29,7 @@ import {
 export default {
     data() {
         return {
-            showAddTask: false,
-            showEditTask: false
+            showAddTask: false
         };
     },
     computed: {
@@ -48,16 +43,13 @@ export default {
     methods: {
         addNewTask() {
             this.showAddTask = true;
-        },
-        editTask() {
-            this.showEditTask = true;
-        },
+        }
     },
     components: {
         'tasks': require('../components/tasks/tasks').default,
-        'add-task': require('../components/tasks/modals/AddTask').default,
-        'edit-task': require('../components/tasks/modals/EditTask').default
+        'add-task': require('../components/tasks/modals/AddTask').default
     }
+
 };
 </script>
 

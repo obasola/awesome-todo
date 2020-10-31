@@ -23,26 +23,29 @@
     </q-item-section>
     <q-item-section side>
         <div class="row">
+            <q-btn @click.stop="showEditTask = true" flat round dense color="primary" icon="edit" />
             <q-btn @click.stop="promptToDelete(id)" flat round dense color="red" icon="delete" />
-            <q-btn @click.stop="promptToEdit(id)" flat round dense color="primary" icon="edit" />
         </div>
     </q-item-section>
-
-   
-
+    <div class="q-pa-md q-gutter-sm">
+        <q-dialog v-model="showEditTask">
+            <edit-task @closeAfterEdit="showEditTask = false" />
+        </q-dialog>
+    </div>
     <q-dialog v-model="confirm" persistent>
-      <q-card>
-        <q-card-section class="row items-center">
-          <q-avatar icon="delete" color="red" text-color="white" />
-          <span class="q-ml-sm">Are you sure you want to Delete the selected item?</span>
-        </q-card-section>
+        <q-card>
+            <q-card-section class="row items-center">
+                <q-avatar icon="delete" color="red" text-color="white" />
+                <span class="q-ml-sm">Are you sure you want to Delete the selected item?</span>
+            </q-card-section>
 
-        <q-card-actions align="right">
-          <q-btn flat label="Yes" color="primary" v-close-popup @click="deleteOk(id)" />
-          <q-btn flat label="No" color="primary" v-close-popup @click="deleteCancel()" />
-        </q-card-actions>
-      </q-card>
+            <q-card-actions align="right">
+                <q-btn flat label="Yes" color="primary" v-close-popup @click="deleteOk(id)" />
+                <q-btn flat label="No" color="primary" v-close-popup @click="deleteCancel()" />
+            </q-card-actions>
+        </q-card>
     </q-dialog>
+
 </q-item>
 </template>
 
@@ -61,7 +64,7 @@ export default {
     },
     methods: {
         // function( STORE MODULE, FUNCTIONS declared in actions)
-        ...mapActions('tasks', ['updateTasks', 'deleteTasks']),
+        ...mapActions('tasks', ['updateTasks', 'deleteTasks', 'updateEditFlag']),
         deleteOk(id) {
             this.deleteTasks(id);
 
@@ -75,7 +78,13 @@ export default {
         },
         promptToEdit(id) {
             this.showEditTask = true;
+            this.updateEditFlag(this.showEditTask)
+
+            alert("Edit id: " + id)
         }
+    },
+    components: {
+        'edit-task': require('./modals/EditTask').default
     }
 }
 </script>

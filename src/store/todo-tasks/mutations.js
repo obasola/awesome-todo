@@ -9,6 +9,9 @@ export function updateTask(state, payload) {
     Object.assign(state.tasks[payload.id],payload.updated.completed)
     
 }
+export function updateEditFlag(state, flag) {
+    Vue.set(state.showEditFlag,'',flag);
+}
 export function deleteTasks(state, id) {
     Vue.delete(state.tasks, id)
 }

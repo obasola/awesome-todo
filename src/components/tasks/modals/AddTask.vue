@@ -15,7 +15,7 @@
         </q-card-section>
 
         <modal-buttons @submit="saveTask()"></modal-buttons>
-
+        
     </q-form>
 
 </q-card>

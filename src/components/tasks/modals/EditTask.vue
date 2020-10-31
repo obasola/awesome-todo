@@ -1,23 +1,14 @@
 <template>
 <q-card style="width:475px; max-width:500px">
-
     <modal-header>Edit Task</modal-header>
-
     <q-form @submit.prevent="saveTask()">
         <q-card-section class="q-pt-none">
-
             <modal-task-name :name.sync="taskInstance.name" ref="modalTaskName">ModalTaskName</modal-task-name>
-
             <modal-task-due-date :dueDate.sync="taskInstance.dueDate"></modal-task-due-date>
-
             <modal-task-due-time :dueTime.sync="taskInstance.dueTime" v-if="taskInstance.dueDate"></modal-task-due-time>
-
         </q-card-section>
-
         <modal-buttons @submit="saveTask()"></modal-buttons>
-
     </q-form>
-
 </q-card>
 </template>
 
@@ -28,6 +19,7 @@ import {
 import {
     mapActions
 } from 'vuex'
+
 export default {
     data() {
         return {
@@ -50,7 +42,7 @@ export default {
         saveTask() {
             this.showEditTask = false;
             this.submitTask(this.taskInstance)
-            this.$emit("closeAfterSave")
+            this.$emit("closeAfterEdit")
         }
     },
     components: {
@@ -62,3 +54,7 @@ export default {
     }
 }
 </script>
+
+<style lang="css">
+  
+</style>
