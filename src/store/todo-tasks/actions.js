@@ -10,9 +10,23 @@ export function updateTasks( {commit}, payload) {
 export function deleteTasks ( {commit}, id) {
     commit('deleteTasks', id)
 }
-export function updateEditFlag({commit}, flag) {
-    commit('updateEditFlag', flag)
+export function editSelectedTask({commit}, task) {
+    commit('editTaskSelection', task)
 }
+export function showTaskSelection({commit}, task) {
+    commit('showTaskSelected', task)
+}
+
 export function submitTask( {commit}, task) {
     commit( 'submitTask', task)
 }
+
+export function taskSelected(state, id) {
+   let key = 'ID' + id
+    return state.tasks[key];
+}
+
+export function selectedTask() {
+  editTaskStatus({commit}, task)
+}
+

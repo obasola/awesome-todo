@@ -1,6 +1,13 @@
 export default function () {
   return {
     showEditTask: false,
+    taskSelection: {
+      id: '',
+      name: '',
+      dueDate: '',
+      dueTime: '',
+      completed: ''
+    },
     tasks: {
       'ID1':
       {

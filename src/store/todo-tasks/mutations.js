@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import {uid} from 'quasar'
 
+export function showTaskSelected(state, task) {
+  Object.assign(state.taskSelection, task)
+}
 export function updateTask(state, payload) {
     console.log("Mutation: updateTask called, payload = "+payload+' state= '+state)
     //state.task.completed =  payload.updated.completed
@@ -9,8 +12,14 @@ export function updateTask(state, payload) {
     Object.assign(state.tasks[payload.id],payload.updated.completed)
     
 }
-export function updateEditFlag(state, flag) {
-    Vue.set(state.showEditFlag,'',flag);
+export function taskSelection(state, task) {
+    state.taskSelection.id = task.id
+    state.taskSelection.name = task.name
+    state.taskSelection.dueDate = task.dueDate
+    state.taskSelection.dueTime = task.dueTime
+    state.taskSelection.completed = task.completed
+
+    //Object.assign(state.taskSelection,task)
 }
 export function deleteTasks(state, id) {
     Vue.delete(state.tasks, id)

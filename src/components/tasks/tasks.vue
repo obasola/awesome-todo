@@ -23,7 +23,7 @@
     </q-item-section>
     <q-item-section side>
         <div class="row">
-            <q-btn @click.stop="showEditTask = true" flat round dense color="primary" icon="edit" />
+            <q-btn @click.stop="promptToEdit(task)" flat round dense color="primary" icon="edit" />
             <q-btn @click.stop="promptToDelete(id)" flat round dense color="red" icon="delete" />
         </div>
     </q-item-section>
@@ -64,7 +64,7 @@ export default {
     },
     methods: {
         // function( STORE MODULE, FUNCTIONS declared in actions)
-        ...mapActions('tasks', ['updateTasks', 'deleteTasks', 'updateEditFlag']),
+        ...mapActions('tasks', ['updateTasks', 'deleteTasks', 'showTaskSelection']),
         deleteOk(id) {
             this.deleteTasks(id);
 
@@ -76,11 +76,10 @@ export default {
             this.confirm = true
 
         },
-        promptToEdit(id) {
-            this.showEditTask = true;
-            this.updateEditFlag(this.showEditTask)
+        promptToEdit(task) {
 
-            alert("Edit id: " + id)
+            this.showTaskSelection(task)
+            this.showEditTask = true
         }
     },
     components: {

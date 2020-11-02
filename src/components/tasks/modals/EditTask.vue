@@ -21,27 +21,35 @@ import {
 } from 'vuex'
 
 export default {
+    props: [
+        'task'
+    ],
     data() {
+        let currTask = this.selectedTask()
         return {
             taskInstance: {
-                id: 0,
-                name: "",
-                dueDate: "",
-                dueTime: "",
-                completed: false
+                id: currTask.id,
+                name: currTask.name,
+                dueDate: currTask.dueDate,
+                dueTime: currTask.dueTime,
+                completed: currTask.completed
             }
         }
     },
 
     methods: {
-        ...mapActions('tasks', ['submitTask']),
+        ...mapActions('tasks', ['updateTask', 'updateChangedTask']),
         clearDateTime() {
             this.taskInstance.dueDate = '';
             this.taskInstance.dueTime = '';
         },
+        selectedTask() {
+            return this.$store.getters["tasks/getSelectedTask"];
+        },
         saveTask() {
             this.showEditTask = false;
-            this.submitTask(this.taskInstance)
+            this.updateTask(this.taskInstance)
+            this.updateChangedTask(this.taskInstance)
             this.$emit("closeAfterEdit")
         }
     },
