@@ -38,7 +38,7 @@ export default {
     },
 
     methods: {
-        ...mapActions('tasks', ['updateTask', 'updateChangedTask']),
+        ...mapActions('tasks', ['updateTask', 'updateTaskChanges']),
         clearDateTime() {
             this.taskInstance.dueDate = '';
             this.taskInstance.dueTime = '';
@@ -49,7 +49,7 @@ export default {
         saveTask() {
             this.showEditTask = false;
             this.updateTask(this.taskInstance)
-            this.updateChangedTask(this.taskInstance)
+            this.updateTaskChanges(this.taskInstance)
             this.$emit("closeAfterEdit")
         }
     },

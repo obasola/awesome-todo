@@ -7,6 +7,9 @@ export function updateTasks( {commit}, payload) {
     commit('updateTask', payload)
     console.log("update action called, payload = "+payload)
 }
+export function updateTaskChanges({commit}, task) {
+    commit('updateChangedTask', task)
+}
 export function deleteTasks ( {commit}, id) {
     commit('deleteTasks', id)
 }

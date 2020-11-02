@@ -12,6 +12,18 @@ export function updateTask(state, payload) {
     Object.assign(state.tasks[payload.id],payload.updated.completed)
     
 }
+export function updateChangedTask(state, payload) {
+  console.log("Mutation: updateTask called, payload = "+payload+' state= '+state)
+  let key = 'ID' + payload.id
+  let taskInstance = {
+    id: payload.id,
+    name: payload.name,
+    dueDate: payload.dueDate,
+    dueTime: payload.dueTime,
+    completed: payload.completed
+  }
+  Object.assign(state.tasks[key],taskInstance)
+}
 export function taskSelection(state, task) {
     state.taskSelection.id = task.id
     state.taskSelection.name = task.name
